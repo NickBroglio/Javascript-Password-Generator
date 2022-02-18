@@ -1,5 +1,3 @@
-
-
 // Start working code
 // User input variables: 
 var enter;
