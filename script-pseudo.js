@@ -1,56 +1,99 @@
-// ================
-// GLOBAL VARIABLES
-// ================
-// STEP 1
-// Create special character set using array
-// Create numeric character set using array
-// Create uppercase character set ising array
-// Create lowercase character set using array
 
+// defining global variables
+let characters = ["+", "-", "&&", "||", "!", "(", ")", "{", "}", "[", "]", "^", "~", "*", "?", ":"];
+let numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9];
+let uppercase = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+let lowercase = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+let createdPassword = "";
+let choicesPicks = []
 
-function generatePassword() {
-// STEP 2
-// Create a variable to store the length of password user entered with window prompt
-// Check if the length meets the minimim of 8 chars and the maximum of 128 chars
-// If it fails the requirements, alert the user then return to the caller
+    // function to gather info for generated password
+function userInfo() {
+    // variable for user password length chosen
+  let passwordLength = prompt("Please put between 8 and 128 characters");
+    // conditional to tell user between 8 and 128 characters
+  if (passwordLength < 8){
+    alert("Password must be at least 8 characters.");
+    return null
+  }
+  if(passwordLength > 128){
+    alert("Password must be less than 128 characters.");
+    return null
+  }
+    // confirm to ask user if special characters wanted
+  let characterConfirm = confirm("Do you want to include special characters?");
+    // condtional if user chose characters
+  if (characterConfirm === true) {
+    // array adding string 
+    choicesPicks.push.apply(choicesPicks, characters);
+    // random choice picked from character array
+    randomChoice = characters[Math.floor(Math.random() * characters.length)];
+    // randomized character added to generated password
+    createdPassword += randomChoice;
+  }
+console.log(choicesPicks)
+console.log(createdPassword)
 
-// STEP 3
-// Create an option variable for special chars to store true or false returned from windeow confirm
-// Create an option variable for numeric chars to store true or false returned from windeow confirm
-// Create an option variable for lowercase chars to store true or false returned from windeow confirm
-// Create an option variable for uppercase chars to store true or false returned from windeow confirm
+    // confirm to ask user if numbers wanted
+  let numberConfirm = confirm("Do you want to include numbers?");
+    // condtional if user chose numbers
+  if (numberConfirm === true) {
+    // array adding string
+    choicesPicks.push.apply(choicesPicks, numbers);
+    // random choice picked from character array
+    randomChoice = numbers[Math.floor(Math.random() * numbers.length)];
+    // randomized character added to generated password 
+    createdPassword += randomChoice;
+  }
+console.log(choicesPicks)
+console.log(createdPassword)
 
-// STEP 4
-// Creates an array pool to contain all characters in the chosen character set options and iniiialize it to an empty array, []
-// - If the option for a given character type (set) is true, add the characters in the char set to the array pool
-// - Perform the above task for all four character types (sets)
+    // confirm to ask user if upperscase letters wanted
+  let uppercaseConfirm = confirm("Do you want to include uppercase letter?");
+    // condtional if user chose uppercase letters
+  if (uppercaseConfirm === true) {
+    // array adding string
+    choicesPicks.push.apply(choicesPicks, uppercase);
+    // random choice picked from uppercase array
+    randomChoice = uppercase[Math.floor(Math.random() * uppercase.length)];
+    // randomized uppercase letter added to generated password
+    createdPassword += randomChoice;
+  }
+console.log(choicesPicks)
+console.log(createdPassword)
 
-// STEP 5
-// Create an array variable for password and initialize it to an empty array []
+    // confirm to ask user if lowercase letters wanted
+  let lowercaseConfirm = confirm("Do you want to include lowercase letters?");
+    // condtional if user chose lowercase letters
+  if (lowercaseConfirm === true) {
+    // array adding string
+    choicesPicks.push.apply(choicesPicks, lowercase);
+    // random choice picked from lowercase array
+    randomChoice = lowercase[Math.floor(Math.random() * lowercase.length)];
+    // randomized lowercase letter added to generated password
+    createdPassword += randomChoice;
+  }
+console.log(choicesPicks)
+console.log(createdPassword)
 
-// Ietrate thru 'for' loop for the length of the password
-/*
-  In each iteration
-    Create an random index from the array pool in step 4
-    Add the char chosen with the random index from the array pool to the password array varialbe from step 5
-*/
+    // if user doesnt pick any option function resets
+  if(createdPassword === ""){
+    alert("Please select at least one option.")
+    return null
+  }
 
-// STRP 6
-// Check to make sure we include at least one char from the charater type (set) user chose to inclue in the password
-//    by creating a guarranty array wchich contains one char from each chose char type
-// Replace the exact number of chars in the password array with the chars in the guarranty array
-
-// STEP 7
-// Convert the password array to a password string
-// Return the password string to the caller
-
-
-  var passwordStr; //
-
-
-  return passwordStr;
+  // for loop to add arrays to generate string for password
+  for (let i = 0; i < passwordLength; i++) {
+    randomPick = choicesPicks[Math.floor(Math.random() * choicesPicks.length)];
+    createdPassword += randomPick;
+  }
+    console.log(createdPassword)
 }
 
+function generatePassword() {
+  userInfo();
+  return createdPassword;
+}
 
 // Assignment Code
 var generateBtn = document.querySelector("#generate");
